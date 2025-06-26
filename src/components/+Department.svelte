@@ -2,7 +2,13 @@
 
   import RoleTile from "./+RoleTile.svelte";
   import StatTile from "./+StatTile.svelte";
- 
+  import AttritionAnalysisChart from "./charts/department/+AttritionAnalysisChart.svelte";
+  import PerformanceMatrixChart from "./charts/department/+PerformanceMatrixChart .svelte";
+  import CareerProgressionChart from "./charts/department/+CareerProgressionChart .svelte";
+  import WorkLifeBalanceHeatmap from "./charts/department/+WorkLifeBalanceHeatmap.svelte";
+  import SalaryDistributionChart from "./charts/department/+SalaryDistributionChart .svelte";
+	import GenderDiversityChart from "./charts/department/+GenderDiversityChart.svelte";
+  
   export let employees = [];
 
   //unique department names
@@ -128,7 +134,24 @@
 </div>
   <!-- Main Charts -->
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-h-[40rem] overflow-y-auto">
-    <p>charts coming soon!</p>
+        <!-- Attrition Analysis Radar Chart -->
+        <div class="lg:col-span-1">
+          <AttritionAnalysisChart employees={deptEmployees} selectedDept={selectedDept} />
+        </div>
+                <!-- Salary Distribution Bubble Chart -->
+        <div class="lg:col-span-1">
+          <SalaryDistributionChart employees={deptEmployees} selectedDept={selectedDept} />
+        </div>
+
+        <!-- Work-Life Balance Heatmap -->
+        <div class="lg:col-span-2">
+          <WorkLifeBalanceHeatmap employees={deptEmployees} selectedDept={selectedDept} />
+        </div>
+
+          <!-- GenderDiversityChart -->
+       <div class="lg:col-span-2">
+        <GenderDiversityChart employees={deptEmployees} selectedDept={selectedDept} />
+      </div>
   </div>
     {:else}
       <!-- This will not appear once departments exist, since we auto-select the first -->

@@ -1,6 +1,6 @@
 <script>
   import { createEventDispatcher } from 'svelte';
-  import { Home, Users, Table, CircleUserRound} from '@lucide/svelte';
+  import { Home, Users, Table  } from '@lucide/svelte';
 
   // Sidebar items (no types—plain JS)
   const items = [
@@ -22,12 +22,8 @@
 </script>
 
 <aside class="flex flex-col bg-gradient-to-b from-blue-800 to-blue-700 text-white w-64 h-screen p-4">
-
-  <div class="flex items-center mb-8 space-x-3 border-b border-b-white pb-4">
-    <CircleUserRound size={36} color="#2563eb" strokeWidth={2.2} class="bg-blue-50 rounded-full p-2 shadow-sm" />
-    <h1 class="text-2xl font-extrabold tracking-tight text-white dark:text-white">
-      Org-Insights
-    </h1>
+  <div class="mb-8">
+    <h1 class="text-2xl font-bold">HR Analytics</h1>
   </div>
 
   <nav class="flex-1">
@@ -45,8 +41,7 @@
         {/each}
   </nav>
 
-  <footer class="mt-auto text-sm text-blue-200 text-center">
-    <p> Visual Anaytics Project © 2025 </p>
-    <p> Taufik Tamboli</p>
+  <footer class="mt-auto text-sm text-blue-200">
+    <p>© 2025 </p>
   </footer>
 </aside>

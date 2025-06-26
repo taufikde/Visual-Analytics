@@ -4,6 +4,13 @@
     import DashboardHeader from '../components/+DashboardHeader.svelte';
     import DataGrid from '../components/+DataGrid.svelte';
     
+    import DepartmentDistributionChart from '../components/charts/+DepartmentDistributionChart.svelte';
+    import AgeDistributionChart from '../components/charts/+AgeDistributionChart .svelte';
+    import SalaryAnalysisChart from '../components/charts/+SalaryAnalysisChart .svelte';
+    import SatisfactionChart from '../components/charts/+SatisfactionChart .svelte';
+    import ExperienceChart from '../components/charts/+ExperienceChart .svelte';
+    import OvertimeChart from '../components/charts/+OvertimeChart .svelte';
+    
     const { data } = $props();
     const employees = data?.employees ?? [];
     const firstEmployee = employees[0] || {};
@@ -41,7 +48,38 @@
         
         <!-- Charts Section -->
         <div class="mt-6">
-            <p>charts coming soon!</p>
+            <div class="flex items-center gap-4 mb-6">
+                <!-- Overview Button -->
+                <button 
+                    class="px-4 py-2 rounded-lg font-medium transition-all {showAttritionView ? 'bg-gray-200 text-gray-700 hover:bg-gray-300' : 'bg-blue-600 text-white'}"
+                    onclick={() => showAttritionView = false}
+                >
+                    📊 Overview
+                </button>
+                <!-- Retention Button -->
+                <button 
+                    class="px-4 py-2 rounded-lg font-medium transition-all {showAttritionView ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'}"
+                    onclick={() => showAttritionView = true}
+                >
+                    📈 Retention
+                </button>
+
+            </div>
+            <!-- Main Chart -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-h-[45rem] overflow-y-auto">
+                <!-- Row 1 -->
+                <DepartmentDistributionChart {employees} showAttrition={showAttritionView} />
+                <AgeDistributionChart {employees} showAttrition={showAttritionView} />
+
+                <!-- Row 2 -->
+                <SalaryAnalysisChart {employees} showAttrition={showAttritionView} />
+                <SatisfactionChart {employees} showAttrition={showAttritionView} />
+                
+                <!-- Row 3 -->
+                <ExperienceChart {employees} showAttrition={showAttritionView} />
+                <OvertimeChart {employees} showAttrition={showAttritionView} />
+                
+            </div>
         </div>
         
     {:else if activeSection === 'department'}
