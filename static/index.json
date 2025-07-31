@@ -1,0 +1,8 @@
+{
+  "available_endpoints": [
+    "/api/health.json",
+    "/api/model-info.json",
+    "/api/top_employees.json"
+  ],
+  "note": "These are static JSON files generated from the FastAPI backend"
+}

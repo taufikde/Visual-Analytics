@@ -22,7 +22,6 @@
     $: if (chart && employees.length > 0) {
         updateChart();
     }
-
     $: if (chart && showAttrition !== undefined) {
         updateChart();
     }
@@ -42,20 +41,31 @@
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
+                        display: showAttrition,
                         position: 'top'
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
                     }
                 },
                 scales: {
                     x: {
                         title: {
                             display: true,
-                            text: 'Experience Range (Years)'
+                            text: 'Age Range',
+                            font: {
+                                size: 18
+                            }
                         }
                     },
                     y: {
                         title: {
                             display: true,
-                            text: 'Number of Employees'
+                            text: 'Number of Employees',
+                            font: {
+                                size: 18
+                            }
                         },
                         beginAtZero: true
                     }
@@ -69,64 +79,65 @@
     function updateChart() {
         if (!chart || employees.length === 0) return;
         
-        const experienceRanges = ['0-2', '3-5', '6-10', '11-15', '16+'];
+        // Create age ranges
+        const ageRanges = ['18-25', '26-35', '36-45', '46-55', '56+'];
         
-        function getExperienceRange(years) {
-            if (years <= 2) return '0-2';
-            if (years <= 5) return '3-5';
-            if (years <= 10) return '6-10';
-            if (years <= 15) return '11-15';
-            return '16+';
+        function getAgeRange(age) {
+            if (age <= 25) return '18-25';
+            if (age <= 35) return '26-35';
+            if (age <= 45) return '36-45';
+            if (age <= 55) return '46-55';
+            return '56+';
         }
         
         let data;
         if (showAttrition) {
-            const expAttrition = {};
-            experienceRanges.forEach(range => {
-                expAttrition[range] = { active: 0, left: 0 };
+            const ageAttrition = {};
+            ageRanges.forEach(range => {
+                ageAttrition[range] = { active: 0, left: 0 };
             });
             
             employees.forEach(emp => {
-                const range = getExperienceRange(emp.TotalWorkingYears);
+                const range = getAgeRange(emp.Age);
                 if (emp.Attrition === 'Yes') {
-                    expAttrition[range].left++;
+                    ageAttrition[range].left++;
                 } else {
-                    expAttrition[range].active++;
+                    ageAttrition[range].active++;
                 }
             });
             
             data = {
-                labels: experienceRanges,
+                labels: ageRanges,
                 datasets: [
                     {
                         label: 'Active Employees',
-                        data: experienceRanges.map(range => expAttrition[range].active),
+                        data: ageRanges.map(range => ageAttrition[range].active),
                         backgroundColor: '#10B981',
                         borderRadius: 6
                     },
                     {
                         label: 'Left Company',
-                        data: experienceRanges.map(range => expAttrition[range].left),
+                        data: ageRanges.map(range => ageAttrition[range].left),
                         backgroundColor: '#EF4444',
                         borderRadius: 6
                     }
                 ]
             };
         } else {
-            const expCounts = {};
-            experienceRanges.forEach(range => expCounts[range] = 0);
+            const ageCounts = {};
+            ageRanges.forEach(range => ageCounts[range] = 0);
             
             employees.forEach(emp => {
-                const range = getExperienceRange(emp.TotalWorkingYears);
-                expCounts[range]++;
+                const range = getAgeRange(emp.Age);
+                ageCounts[range]++;
             });
             
             data = {
-                labels: experienceRanges,
+                labels: ageRanges,
                 datasets: [{
-                    label: 'Total Employees',
-                    data: Object.values(expCounts),
-                    backgroundColor: '#8B5CF6',
+                    label: 'Employees',
+                    data: Object.values(ageCounts),
+                    backgroundColor: '#3B82F6',
                     borderRadius: 6
                 }]
             };
@@ -138,11 +149,11 @@
     }
 </script>
 
-<div class="bg-white rounded-2xl shadow p-6">
+<div class="bg-white rounded-2xl shadow p-6 6 h-92">
     <h3 class="text-xl font-semibold text-gray-800 mb-4">
-        {showAttrition ? 'Experience vs Attrition' : 'Experience Distribution'}
+        {showAttrition ? 'Age vs Attrition Analysis' : 'Age Distribution'}
     </h3>
-    <div class="h-80">
+    <div class="h-64">
         <canvas bind:this={canvas}></canvas>
     </div>
 </div>

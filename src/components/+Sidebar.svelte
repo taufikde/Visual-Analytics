@@ -1,11 +1,10 @@
 <script>
   import { createEventDispatcher } from 'svelte';
-  import { Home, Users, Table  } from '@lucide/svelte';
+  import { Home, Users, Table, LayoutDashboard  } from '@lucide/svelte';
 
   // Sidebar items (no types—plain JS)
   const items = [
     { key: 'dashboard', label: 'Dashboard', Icon: Home },
-    { key: 'department', label: 'Department', Icon: Users },
     { key: 'datagrid', label: 'DataGrid', Icon: Table }
   ];
 
@@ -21,9 +20,9 @@
   }
 </script>
 
-<aside class="flex flex-col bg-gradient-to-b from-blue-800 to-blue-700 text-white w-64 h-screen p-4">
-  <div class="mb-8">
-    <h1 class="text-2xl font-bold">HR Analytics</h1>
+<aside class="flex flex-col bg-gradient-to-b from-blue-800 to-blue-700 text-white w-24 h-screen p-4">
+  <div class="mb-8 ml-3">
+    <LayoutDashboard class="w-8 h-8" /> 
   </div>
 
   <nav class="flex-1">
@@ -35,13 +34,13 @@
                     ? 'bg-white text-blue-800 hover:bg-white/90'
                     : 'bg-blue-700/20 hover:bg-blue-700/50'}"
         >
-            <svelte:component this="{item.Icon}" class="w-5 h-5" />
-            <span class="font-medium">{item.label}</span>
+            <svelte:component this="{item.Icon}" class="w-8 h-8" />
+           <!-- <span class="font-medium">{item.label}</span> -->
         </button>
         {/each}
   </nav>
 
   <footer class="mt-auto text-sm text-blue-200">
-    <p>© 2025 </p>
+    <p class="text-center"> Taufik Tamboli © 2025 </p>
   </footer>
 </aside>

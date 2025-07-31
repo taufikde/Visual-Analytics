@@ -25,6 +25,7 @@
     $: if (chart && showAttrition !== undefined) {
         updateChart();
     }
+    
     function createChart() {
         if (!canvas) return;
         
@@ -40,15 +41,41 @@
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        position: 'bottom'
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 18 
+                            }
+                        }
                     }
                 },
                 scales: {
                     r: {
-                        beginAtZero: true,
+                        beginAtZero: false,
+                        min: 1,
                         max: 4,
                         ticks: {
-                            stepSize: 1
+                            stepSize: 4,
+                            font: {
+                                size: 18 
+                            },
+                            // Custom tick labels to show 1, 2, 3, 4
+                            callback: function(value) {
+                                return value;
+                            }
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 16 
+                            }
+                        },
+                        // Add grid lines for better visibility
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        },
+                        // Customize the angle lines
+                        angleLines: {
+                            color: 'rgba(0, 0, 0, 0.1)'
                         }
                     }
                 }
@@ -88,11 +115,11 @@
             
             const count = employeeList.length;
             return [
-                totals.JobSatisfaction / count,
-                totals.EnvironmentSatisfaction / count,
-                totals.WorkLifeBalance / count,
-                totals.RelationshipSatisfaction / count,
-                totals.JobInvolvement / count
+                Math.round((totals.JobSatisfaction / count) * 100) / 100,
+                Math.round((totals.EnvironmentSatisfaction / count) * 100) / 100,
+                Math.round((totals.WorkLifeBalance / count) * 100) / 100,
+                Math.round((totals.RelationshipSatisfaction / count) * 100) / 100,
+                Math.round((totals.JobInvolvement / count) * 100) / 100
             ];
         }
         
@@ -105,22 +132,26 @@
                 labels: satisfactionMetrics,
                 datasets: [
                     {
-                        label: 'Active Employees',
+                        label: 'Active Emp. Rating',
                         data: getAverageRatings(activeEmployees),
                         borderColor: '#10B981',
                         backgroundColor: 'rgba(16, 185, 129, 0.2)',
                         pointBackgroundColor: '#10B981',
                         pointBorderColor: '#10B981',
-                        pointRadius: 4
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                        borderWidth: 2
                     },
                     {
-                        label: 'Left Company',
+                        label: 'Left Emp. Rating',
                         data: getAverageRatings(leftEmployees),
                         borderColor: '#EF4444',
                         backgroundColor: 'rgba(239, 68, 68, 0.2)',
                         pointBackgroundColor: '#EF4444',
                         pointBorderColor: '#EF4444',
-                        pointRadius: 4
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                        borderWidth: 2
                     }
                 ]
             };
@@ -134,7 +165,9 @@
                     backgroundColor: 'rgba(59, 130, 246, 0.2)',
                     pointBackgroundColor: '#3B82F6',
                     pointBorderColor: '#3B82F6',
-                    pointRadius: 4
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    borderWidth: 2
                 }]
             };
         }
@@ -144,11 +177,11 @@
     }
 </script>
 
-<div class="bg-white rounded-2xl shadow p-6">
+<div class="bg-white rounded-2xl shadow p-6 h-92">
     <h3 class="text-xl font-semibold text-gray-800 mb-4">
         {showAttrition ? 'Satisfaction Ratings (Attrition Comparison)' : 'Employee Satisfaction Overview'}
     </h3>
-    <div class="h-80">
+    <div class="h-75">
         <canvas bind:this={canvas}></canvas>
     </div>
 </div>

@@ -3,14 +3,11 @@
   export let count = 0;
 </script>
 
-<div class="flex-shrink-0 w-40 h-32 border border-gray-300 rounded-lg p-4 flex flex-col items-center justify-center bg-white hover:shadow transition-shadow duration-200">
-  <span class="text-center text-gray-800 font-semibold text-sm leading-tight">{role}</span>
-
-  <span class="mt-2 text-blue-600 text-2xl font-bold">
+<div class="w-44 h-28 bg-white rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-200 p-4 flex flex-col justify-center items-center">
+  <div class="text-3xl font-bold text-blue-600 mt-2 leading-snug">
     {count}
-  </span>
-
-  <span class="text-gray-500 text-sm">
-    {count === 1 ? 'employee' : 'employees'}
-  </span>
+  </div>
+    <div class="text-sm text-gray-600 font-medium text-center leading-tight">
+    {role}
+  </div>
 </div>

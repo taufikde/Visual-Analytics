@@ -117,7 +117,7 @@
     }
 </script>
 
-<div class="bg-white rounded-2xl shadow-sm p-6">
+<div class="bg-white rounded-2xl shadow-sm p-6 h-92">
     <div class="flex items-center justify-between mb-4">
         <h3 class="text-lg font-semibold text-gray-800">
             {showAttrition ? 'Employee Retention' : 'Team Distribution'}

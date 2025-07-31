@@ -1,0 +1,8 @@
+{
+  "status": "success",
+  "model_loaded": true,
+  "pipeline_loaded": true,
+  "model_type": "RandomForestClassifier",
+  "features": [],
+  "n_features": 51
+}

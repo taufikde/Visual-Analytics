@@ -56,16 +56,24 @@
                 },
                 scales: {
                     x: {
+                        stacked: true,
                         title: {
                             display: true,
-                            text: 'Number of Employees'
+                            text: 'Number of Employees',
+                             font: {
+                                size: 18 
+                            }
                         },
                         beginAtZero: true
                     },
                     y: {
+                        stacked: true,
                         title: {
                             display: true,
-                            text: 'Categories'
+                            text: 'Overtime Status',
+                                  font: {
+                                size: 18 
+                            }
                         }
                     }
                 }
@@ -80,37 +88,41 @@
         
         let data;
         if (showAttrition) {
-            // Overtime vs Attrition analysis
-            const analysis = {
-                'Overtime + Left': 0,
-                'Overtime + Active': 0,
-                'No Overtime + Left': 0,
-                'No Overtime + Active': 0
+            // Stacked bar for Overtime and No Overtime with Active and Left
+            const overtimeStats = {
+                'Overtime': { 'Left': 0, 'Active': 0 },
+                'No Overtime': { 'Left': 0, 'Active': 0 }
             };
-            
+
             employees.forEach(emp => {
-                const overtimeStatus = emp.OverTime === 'Yes' ? 'Overtime' : 'No Overtime';
-                const attritionStatus = emp.Attrition === 'Yes' ? 'Left' : 'Active';
-                const key = `${overtimeStatus} + ${attritionStatus}`;
-                analysis[key]++;
+                const overtimeKey = emp.OverTime === 'Yes' ? 'Overtime' : 'No Overtime';
+                const attritionKey = emp.Attrition === 'Yes' ? 'Left' : 'Active';
+                overtimeStats[overtimeKey][attritionKey]++;
             });
-            
+
             data = {
-                labels: Object.keys(analysis),
-                datasets: [{
-                    label: 'Employee Count',
-                    data: Object.values(analysis),
-                    backgroundColor: [
-                        '#EF4444', // Overtime + Left (red)
-                        '#F59E0B', // Overtime + Active (orange)
-                        '#FCA5A5', // No Overtime + Left (light red)
-                        '#10B981'  // No Overtime + Active (green)
-                    ],
-                    borderRadius: 6
-                }]
+                labels: ['Overtime', 'No Overtime'],
+                datasets: [
+                    {
+                        label: 'Left',
+                        data: [
+                            overtimeStats['Overtime']['Left'],
+                            overtimeStats['No Overtime']['Left']
+                        ],
+                        backgroundColor: '#EF4444'
+                    },
+                    {
+                        label: 'Active',
+                        data: [
+                            overtimeStats['Overtime']['Active'],
+                            overtimeStats['No Overtime']['Active']
+                        ],
+                        backgroundColor: '#10B981'
+                    }
+                ]
             };
         } else {
-            // Simple overtime distribution
+            // Simple work pattern distribution
             const overtimeCounts = { 'Yes': 0, 'No': 0 };
             const travelCounts = { 'Travel_Rarely': 0, 'Travel_Frequently': 0, 'Non-Travel': 0 };
             
@@ -136,18 +148,21 @@
                     borderRadius: 6
                 }]
             };
+
+            chart.options.scales.x.stacked = false;
+            chart.options.scales.y.stacked = false;
         }
-        
+
         chart.data = data;
         chart.update();
     }
 </script>
 
-<div class="bg-white rounded-2xl shadow p-6">
+<div class="bg-white rounded-2xl shadow p-6 h-92">
     <h3 class="text-xl font-semibold text-gray-800 mb-4">
         {showAttrition ? 'Overtime & Attrition Analysis' : 'Work Patterns Overview'}
     </h3>
-    <div class="h-80">
+    <div class="h-64">
         <canvas bind:this={canvas}></canvas>
     </div>
 </div>

@@ -3,9 +3,11 @@
   export let label;
 </script>
 
-<div class="flex-shrink-0 w-52 border border-gray-300 rounded-lg p-6 bg-white hover:shadow transition-shadow duration-200">
-  <div class="text-center">
-    <span class="block text-3xl font-bold text-blue-600">{value}</span>
-    <span class="mt-2 text-gray-600 font-medium">{label}</span>
+<div class="w-44 h-32 bg-white rounded-2xl mt-2 mx-2 shadow-sm border border-gray-200 hover:shadow-md transition-all duration-200 p-4 flex flex-col justify-center items-center">
+  <div class="text-4xl font-bold text-blue-600 mt-2 leading-snug">
+    {value}
+  </div>
+  <div class="text-sm text-gray-500 font-medium mt-1 text-center">
+    {label}
   </div>
 </div>

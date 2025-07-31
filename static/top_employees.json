@@ -1,0 +1,132 @@
+[
+    {
+        "employee_index": 463,
+        "probability": 0.9534060074667307,
+        "top_features": [
+            {
+                "feature": "num__WorkLifeBalance",
+                "impact": -0.05845897641090491
+            },
+            {
+                "feature": "num__YearsAtCompany",
+                "impact": 0.05845897641090377
+            },
+            {
+                "feature": "num__RelationshipSatisfaction",
+                "impact": -0.04210904861411342
+            },
+            {
+                "feature": "num__StockOptionLevel",
+                "impact": 0.04210904861411271
+            },
+            {
+                "feature": "num__Age",
+                "impact": -0.03776405423848422
+            }
+        ]
+    },
+    {
+        "employee_index": 1060,
+        "probability": 0.9471049591642243,
+        "top_features": [
+            {
+                "feature": "num__Age",
+                "impact": -0.051983469183067045
+            },
+            {
+                "feature": "num__DailyRate",
+                "impact": 0.05198346918306622
+            },
+            {
+                "feature": "cat__JobRole_Laboratory Technician",
+                "impact": 0.05064623105524631
+            },
+            {
+                "feature": "num__RelationshipSatisfaction",
+                "impact": -0.04433499415693201
+            },
+            {
+                "feature": "num__StockOptionLevel",
+                "impact": 0.044334994156931234
+            }
+        ]
+    },
+    {
+        "employee_index": 1332,
+        "probability": 0.9280328774344017,
+        "top_features": [
+            {
+                "feature": "num__WorkLifeBalance",
+                "impact": -0.04657523854182447
+            },
+            {
+                "feature": "num__YearsAtCompany",
+                "impact": 0.04657523854182349
+            },
+            {
+                "feature": "num__RelationshipSatisfaction",
+                "impact": -0.0445001231469166
+            },
+            {
+                "feature": "num__StockOptionLevel",
+                "impact": 0.044500123146915774
+            },
+            {
+                "feature": "num__Age",
+                "impact": -0.03420070690535312
+            }
+        ]
+    },
+    {
+        "employee_index": 1153,
+        "probability": 0.9242047464907648,
+        "top_features": [
+            {
+                "feature": "cat__EducationField_Medical",
+                "impact": -0.08003253109327886
+            },
+            {
+                "feature": "num__WorkLifeBalance",
+                "impact": -0.05652400746228919
+            },
+            {
+                "feature": "num__YearsAtCompany",
+                "impact": 0.05652400746228824
+            },
+            {
+                "feature": "cat__JobRole_Sales Representative",
+                "impact": 0.05037903067027467
+            },
+            {
+                "feature": "num__Age",
+                "impact": -0.04803563134105527
+            }
+        ]
+    },
+    {
+        "employee_index": 1136,
+        "probability": 0.9174254438345141,
+        "top_features": [
+            {
+                "feature": "cat__EducationField_Medical",
+                "impact": -0.09830758407661298
+            },
+            {
+                "feature": "num__WorkLifeBalance",
+                "impact": -0.06826306315360539
+            },
+            {
+                "feature": "num__YearsAtCompany",
+                "impact": 0.06826306315360431
+            },
+            {
+                "feature": "cat__JobRole_Laboratory Technician",
+                "impact": 0.04534178100103535
+            },
+            {
+                "feature": "num__Age",
+                "impact": -0.04231334591907533
+            }
+        ]
+    }
+]
