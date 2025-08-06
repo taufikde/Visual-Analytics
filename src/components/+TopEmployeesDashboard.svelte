@@ -387,7 +387,7 @@ function extractFeatureKey(featureName) {
         <!-- Risk Score Display -->
         <div class="mt-4 flex items-center justify-between">
           <div class="text-3xl font-bold">{(selectedEmployee.probability * 100).toFixed(1)}%
-             <p class="text-xs text-white">Attrition Score</p>
+             <p class="text-xs text-white">Chance of Leaving</p>
           </div>
            
           <div class="text-right">
@@ -450,7 +450,7 @@ function extractFeatureKey(featureName) {
                   </div>
                 </div>
                 <span class="text-sm {feature.impact > 0 ? 'text-red-600 bg-red-50' : 'text-blue-600 bg-blue-50'} font-mono px-3 py-1 rounded-full">
-                  {feature.impact > 0 ? '+' : ''}{(feature.impact * 100).toFixed(2)}
+                  {feature.impact > 0 ? '+' : ''}{(feature.impact * 100).toFixed(2)} %
                 </span>
               </div>
             {/each}
